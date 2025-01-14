@@ -40,7 +40,7 @@ class Feed extends Component {
             .catch(this.catchError);
 
         this.loadPosts();
-        const socket = openSocket('https://git.heroku.com/node-cohttps://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/mplete-udemy-restfull.git');
+        const socket = openSocket('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/');
         socket.on('posts', (data) => {
             if (data.action === 'create') {
                 this.addPost(data.post);
