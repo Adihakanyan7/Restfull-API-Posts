@@ -23,7 +23,7 @@ class Feed extends Component {
     };
 
     componentDidMount() {
-        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com//auth/status', {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -40,7 +40,7 @@ class Feed extends Component {
             .catch(this.catchError);
 
         this.loadPosts();
-        const socket = openSocket('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/');
+        const socket = openSocket('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com');
         socket.on('posts', (data) => {
             if (data.action === 'create') {
                 this.addPost(data.post);
@@ -94,7 +94,7 @@ class Feed extends Component {
             page--;
             this.setState({ postPage: page });
         }
-        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + page, {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/feed/posts?page=' + page, {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -122,7 +122,7 @@ class Feed extends Component {
 
     statusUpdateHandler = (event) => {
         event.preventDefault();
-        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/auth/status', {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
@@ -169,10 +169,10 @@ class Feed extends Component {
         formData.append('title', postData.title);
         formData.append('content', postData.content);
         formData.append('image', postData.image);
-        let url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/';
+        let url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/feed/post';
         let method = 'POST';
         if (this.state.editPost) {
-            url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + this.state.editPost._id;
+            url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/feed/post/' + this.state.editPost._id;
             method = 'PUT';
         }
 
@@ -223,7 +223,7 @@ class Feed extends Component {
 
     deletePostHandler = (postId) => {
         this.setState({ postsLoading: true });
-        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + postId, {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/feed/post/' + postId, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
