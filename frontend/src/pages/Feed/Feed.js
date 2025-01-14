@@ -23,7 +23,7 @@ class Feed extends Component {
     };
 
     componentDidMount() {
-        fetch('https://git.heroku.com/node-complete-udemy-restfull.git', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/', {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -40,7 +40,7 @@ class Feed extends Component {
             .catch(this.catchError);
 
         this.loadPosts();
-        const socket = openSocket('http://localhost:8080');
+        const socket = openSocket('https://git.heroku.com/node-cohttps://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/mplete-udemy-restfull.git');
         socket.on('posts', (data) => {
             if (data.action === 'create') {
                 this.addPost(data.post);
@@ -94,7 +94,7 @@ class Feed extends Component {
             page--;
             this.setState({ postPage: page });
         }
-        fetch('https://git.heroku.com/node-complete-udemy-restfull.git' + page, {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + page, {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -122,7 +122,7 @@ class Feed extends Component {
 
     statusUpdateHandler = (event) => {
         event.preventDefault();
-        fetch('https://git.heroku.com/node-complete-udemy-restfull.git', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/', {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
@@ -169,10 +169,10 @@ class Feed extends Component {
         formData.append('title', postData.title);
         formData.append('content', postData.content);
         formData.append('image', postData.image);
-        let url = 'http://localhost:8080/feed/post';
+        let url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/';
         let method = 'POST';
         if (this.state.editPost) {
-            url = 'http://localhost:8080/feed/post/' + this.state.editPost._id;
+            url = 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + this.state.editPost._id;
             method = 'PUT';
         }
 
@@ -223,7 +223,7 @@ class Feed extends Component {
 
     deletePostHandler = (postId) => {
         this.setState({ postsLoading: true });
-        fetch('https://git.heroku.com/node-complete-udemy-restfull.git' + postId, {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + postId, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
