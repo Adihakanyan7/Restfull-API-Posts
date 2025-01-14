@@ -23,7 +23,7 @@ class Feed extends Component {
     };
 
     componentDidMount() {
-        fetch('http://localhost:8080/auth/status', {
+        fetch('https://git.heroku.com/node-complete-udemy-restfull.git', {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -94,7 +94,7 @@ class Feed extends Component {
             page--;
             this.setState({ postPage: page });
         }
-        fetch('http://localhost:8080/feed/posts?page=' + page, {
+        fetch('https://git.heroku.com/node-complete-udemy-restfull.git' + page, {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -122,7 +122,7 @@ class Feed extends Component {
 
     statusUpdateHandler = (event) => {
         event.preventDefault();
-        fetch('http://localhost:8080/auth/status', {
+        fetch('https://git.heroku.com/node-complete-udemy-restfull.git', {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
@@ -223,7 +223,7 @@ class Feed extends Component {
 
     deletePostHandler = (postId) => {
         this.setState({ postsLoading: true });
-        fetch('http://localhost:8080/feed/post/' + postId, {
+        fetch('https://git.heroku.com/node-complete-udemy-restfull.git' + postId, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
