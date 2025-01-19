@@ -44,6 +44,16 @@ app.use(
     multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
 );
 app.use('/images', express.static(path.join(__dirname, 'images')));
+const cors = require('cors');
+
+app.use(
+    cors({
+        // credentials: true,
+        origin: ['https://adi-posts.netlify.app'], // Replace with your Netlify app's URL
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allowed HTTP methods
+        allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    })
+);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -69,7 +79,10 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message: message, data: data });
 });
 
-
+app.get('/', (req, res) => {
+    res.send('API is running');
+  });
+  
 mongoose
     .connect(
         `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/messages?retryWrites=true&w=majority`
@@ -82,6 +95,8 @@ mongoose
         });
         /** ======================================== */
         /** LISTEN TO CUSTOM SERVER INSTANCE */
-        server.listen(8080);
+        server.listen(process.env.PORT || 8080, () => {
+            console.log(`Server is running on port ${process.env.PORT || 8080}`);
+        });
     })
     .catch((err) => console.log(err));

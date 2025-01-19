@@ -17,7 +17,7 @@ class SinglePost extends Component {
     componentDidMount() {
         /** USE CUSTOM HOC TO WRAP THIS COMPONENT */
         const postId = this.props.params.postId;
-        fetch('http://localhost:8080/feed/post/' + postId, {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/feed/post/' + postId, {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
@@ -32,7 +32,7 @@ class SinglePost extends Component {
                 this.setState({
                     title: resData.post.title,
                     author: resData.post.creator.name,
-                    image: 'http://localhost:8080/' + resData.post.imageUrl,
+                    image: 'https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/' + resData.post.imageUrl,
                     date: new Date(resData.post.createdAt).toLocaleDateString('en-US'),
                     content: resData.post.content,
                 });

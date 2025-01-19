@@ -64,7 +64,7 @@ class App extends Component {
     loginHandler = (event, authData) => {
         event.preventDefault();
         this.setState({ authLoading: true });
-        fetch('http://localhost:8080/auth/login', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ class App extends Component {
         event.preventDefault();
         this.setState({ authLoading: true });
         console.log(authData);
-        fetch('http://localhost:8080/auth/signup', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/auth/signup', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

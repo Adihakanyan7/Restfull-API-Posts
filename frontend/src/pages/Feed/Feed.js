@@ -23,7 +23,7 @@ class Feed extends Component {
     };
 
     componentDidMount() {
-        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com//auth/status', {
+        fetch('https://node-complete-udemy-restfull-b8b95cca66c7.herokuapp.com/auth/status', {
             headers: {
                 Authorization: 'Bearer ' + this.props.token,
             },
